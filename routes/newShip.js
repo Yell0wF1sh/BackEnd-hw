@@ -15,7 +15,7 @@ router.post("/newShip", function (req, res) {
       res.status(500).send(error);
     }
     // if no document was found
-    else if (doc.length == 0) {
+    else if (!doc) {
       // else {
       console.log(req.body);
       // create a new instance of the Ship model, using the request body as the data.
@@ -40,8 +40,19 @@ router.post("/newShip", function (req, res) {
   });
 });
 
-router.get("/test", function (req, res) {
-  res.send("Test Successful");
+router.get("/test", async (req, res) => {
+  let name = req.body.name;
+  Ship.findOne({ name }, function (error, doc) {
+    if (error) {
+      console.error("Error finding ship", error);
+      res.status(500).send(error);
+    } else if (!doc) {
+      console.error("There's no such ship", error);
+      res.status(404).send(error);
+    } else {
+      res.send(doc);
+    }
+  });
 });
 
 /**
