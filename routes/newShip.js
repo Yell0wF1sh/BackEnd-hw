@@ -16,9 +16,9 @@ router.post("/newShip", function (req, res) {
     // if no document was found
     // else if (doc.length == 0) {
     else {
-      console.log(doc);
+      console.log(req.body);
       // create a new instance of the Ship model, using the request body as the data.
-      new Ship.save(req.body, (err, doc) => {
+      new Ship(req.body).save((err, doc) => {
         /**
          * this error/document fat-arrow function is required.
          * on an error, handle it. else send the newly created document back to the client.
