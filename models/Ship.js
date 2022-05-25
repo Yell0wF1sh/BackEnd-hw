@@ -9,45 +9,45 @@ let ShipSchema = new Schema({
    * Name of this Ship
    */
   name: {
-    type: String
+    String
   },
   /**
    * Ship's top speed in kts.
    */
   speed: {
-    value: { type: Number },
-    unit: { type: String, default: "kts" }
+    value: { Number },
+    unit: { String, default: "kts" }
   },
   /**
    * When this Ship was designed.
    */
   designed: {
-    type: Date
+    Date
   },
   /**
    * When this Ship was launched.
    */
   launched: {
-    type: Date
+    Date
   },
   /**
    * Descriptor of ship's main battery guns.
    */
   mainBattery: {
-    type: String
+    String
   },
   /**
    * Descriptor of the ship's secondary battery guns.
    */
   secondaryBattery: {
-    type: String
+    String
   },
   /**
    * Ship's belt armor in mm.
    */
   armor: {
-    value: { type: Number },
-    unit: { type: String, default: "mm" }
+    value: { Number },
+    unit: { String, default: "mm" }
   }
 });
 
