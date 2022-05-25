@@ -5,7 +5,7 @@ let Ship = require("../models/Ship");
 /**
  * tell Express.js that when it receives a POST request at the URL /newShip/, to do this code.
  */
-router.post("/newShip/", function (req, res) {
+router.post("/newShip", function (req, res) {
   // look up documents in MongoDB by name.
   Ship.findOne({ name: req.body.name }, function (error, doc) {
     // if there was an error
@@ -15,6 +15,7 @@ router.post("/newShip/", function (req, res) {
     }
     // if no document was found
     else if (doc.length == 0) {
+      console.log(doc);
       // create a new instance of the Ship model, using the request body as the data.
       new Ship(req.body).save((err, doc) => {
         /**
