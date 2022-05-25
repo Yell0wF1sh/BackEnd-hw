@@ -37,6 +37,10 @@ router.post("/newShip/", function (req, res) {
   });
 });
 
+router.get("/test", function (req, res) {
+  res.send("Test Successful");
+});
+
 /**
  * tell Express.js that when it receives a GET request at the URL /getShip/, to do this code.
  */
