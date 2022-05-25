@@ -61,7 +61,7 @@ router.post("/newShip", function (req, res) {
 // });
 router.get("/test", async (req, res, next) => {
   try {
-    let name = req;
+    let name = req.body;
     console.log(name);
     const item = await Ship.findOne({ name });
     if (item.length == 0) {
