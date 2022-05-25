@@ -7,6 +7,7 @@ let Ship = require("../models/Ship");
  */
 router.post("/newShip", function (req, res) {
   // look up documents in MongoDB by name.
+  console.log(req.body.name);
   Ship.findOne({ name: req.body.name }, function (error, doc) {
     // if there was an error
     if (error) {
