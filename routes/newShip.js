@@ -14,7 +14,7 @@ router.post("/newShip/", function (req, res) {
       res.status(500).send(error);
     }
     // if no document was found
-    else if (!doc) {
+    else if (doc.length == 0) {
       // create a new instance of the Ship model, using the request body as the data.
       new Ship(req.body).save((err, doc) => {
         /**
