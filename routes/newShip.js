@@ -40,23 +40,37 @@ router.post("/newShip", function (req, res) {
   });
 });
 
-router.get("/test", async (req, res) => {
-  let name = req.body.name;
-  if (name == null) {
-    console.error("No ship entered");
-    res.status(500);
-  } else {
-    Ship.findOne({ name }, function (error, doc) {
-      if (error) {
-        console.error("Error finding ship", error);
-        res.status(500).send(error);
-      } else if (!doc) {
-        console.error("There's no such ship", error);
-        res.status(404).send(error);
-      } else {
-        res.send(doc);
-      }
-    });
+// router.get("/test", async (req, res) => {
+//   let name = req.body.name;
+//   if (name == null) {
+//     console.error("No ship entered");
+//     res.status(500);
+//   } else {
+//     Ship.findOne({ name }, function (error, doc) {
+//       if (error) {
+//         console.error("Error finding ship", error);
+//         res.status(500).send(error);
+//       } else if (!doc) {
+//         console.error("There's no such ship", error);
+//         res.status(404).send(error);
+//       } else {
+//         res.send(doc);
+//       }
+//     });
+//   }
+// });
+router.get("/test", async (req, res, next) => {
+  try {
+    let name = req.body.name;
+    const item = await Ship.findOne({ name });
+    if (item.length == 0) {
+      console.error("There's no such ship");
+      res.status(404);
+    } else {
+      res.send(item);
+    }
+  } catch (e) {
+    next(e);
   }
 });
 
