@@ -61,8 +61,8 @@ router.post("/newShip", function (req, res) {
 // });
 router.get("/test", async (req, res, next) => {
   try {
-    let name = req.body;
-    console.log(name);
+    let name = req.body.name;
+    console.log(req);
     const item = await Ship.findOne({ name });
     if (item.length == 0) {
       console.error("There's no such ship");
